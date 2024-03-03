@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "google-book-highlight-sync",
+	"name": "Google Book Highlight Sync",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Sync google book highlight from you google drive to obsidian.",
+	"author": "Leangseu",
+	"authorUrl": "https://github.com/leangseu",
 	"isDesktopOnly": false
 }

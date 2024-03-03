@@ -15,7 +15,7 @@ const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
-	entryPoints: ["main.ts"],
+	entryPoints: ["src/main.ts"],
 	bundle: true,
 	external: [
 		"obsidian",
@@ -37,7 +37,10 @@ const context = await esbuild.context({
 	logLevel: "info",
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
-	outfile: "main.js",
+	outfile: prod ? "main.js": "sample-vault/.obsidian/plugins/google-book-highlight-sync/main.js",
+	define: {
+		'process.env.IS_DEV': `${!prod}`,
+	},
 });
 
 if (prod) {
