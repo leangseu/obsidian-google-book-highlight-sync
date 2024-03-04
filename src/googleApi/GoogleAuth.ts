@@ -7,7 +7,7 @@
 */
 import type { IncomingMessage, ServerResponse } from "http";
 import http from 'http';
-import { google } from "googleapis";
+import { OAuth2Client } from "google-auth-library";
 
 import GoogleBookHighlighSync from "./../main";
 import {
@@ -111,7 +111,7 @@ export async function LoginGoogle(): Promise<void> {
 	 * from the client_secret.json file. To get these credentials for your application, visit
 	 * https://console.cloud.google.com/apis/credentials.
 	 */
-	const oauth2Client = new google.auth.OAuth2(
+	const oauth2Client = new OAuth2Client(
 		CLIENT_ID,
 		CLIENT_SECRET,
 		REDIRECT_URL

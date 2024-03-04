@@ -12,7 +12,10 @@
 		"moduleResolution": "node",
 		"importHelpers": true,
 		"isolatedModules": true,
-		"lib": ["DOM", "ES5", "ES6", "ES7", "es2021"]
+		"paths": {
+			"src": ["src/*"]
+		},
+		"lib": ["DOM", "ES5"]
 	},
 	"include": ["**/*.ts"]
 }

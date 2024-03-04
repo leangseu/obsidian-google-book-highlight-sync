@@ -1,4 +1,6 @@
-import { google } from "googleapis";
+import { OAuth2Client } from "google-auth-library";
+import { drive } from "@googleapis/drive";
+import { docs } from '@googleapis/docs';
 import { getRefreshToken } from "src/helper/LocalStorage";
 import GoogleBookHighlighSync from "src/main";
 import { processGDoc } from "src/helper/GDocProcessor";
@@ -26,17 +28,17 @@ export async function generateBookFolderUrl() {
 	const CLIENT_ID = plugin.settings.googleClientId;
 	const CLIENT_SECRET = plugin.settings.googleClientSecret;
 
-	const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET);
+	const oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET);
 
 	oauth2Client.setCredentials({
 		refresh_token: getRefreshToken(),
 	});
 
-	const drive = google.drive({
+	const driveClient = drive({
 		version: "v3",
 		auth: oauth2Client,
 	});
-	const res = await drive.files.list({
+	const res = await driveClient.files.list({
 		q: `trashed=false and mimeType='application/vnd.google-apps.folder' and name='Play Books Notes'`,
 	});
 
@@ -59,13 +61,13 @@ export async function bookHighlighSync(): Promise<void> {
 	const CLIENT_ID = plugin.settings.googleClientId;
 	const CLIENT_SECRET = plugin.settings.googleClientSecret;
 
-	const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET);
+	const oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET);
 
 	oauth2Client.setCredentials({
 		refresh_token: getRefreshToken(),
 	});
 
-	const drive = google.drive({
+	const driveClient = drive({
 		version: "v3",
 		auth: oauth2Client,
 	});
@@ -78,13 +80,13 @@ export async function bookHighlighSync(): Promise<void> {
 
 	const lastUpdateString = getLastUpdateQuery(plugin.settings.lastUpdate);
 
-	const res = await drive.files.list({
+	const res = await driveClient.files.list({
 		q: `'${folderId}' in parents and trashed=false and mimeType='application/vnd.google-apps.document'${lastUpdateString}`,
 	});
-	const docs = google.docs("v1");
+	const docsClient = docs("v1");
 
 	for(const doc of res.data.files ) {
-		const file = await docs.documents.get({
+		const file = await docsClient.documents.get({
 			documentId: doc.id,
 			auth: oauth2Client,
 		});
@@ -113,7 +115,8 @@ export async function bookHighlighSync(): Promise<void> {
 		await app.vault.process(newFile, () => {
 			let output = plugin.settings.outputFormat;
 			Object.entries(variables).map(([key, value]) => {
-				output = output.replaceAll(`{{${key}}}`, value.replace(/[:]/g, ""));
+				// output = output.replaceAll(`{{${key}}}`, value.replace(/[:]/g, ""));
+				output = output.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value.replace(/[:]/g, ""));
 			});
 
 			return output;
