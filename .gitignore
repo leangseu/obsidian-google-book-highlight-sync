@@ -23,3 +23,5 @@ data.json
 
 sample-vault/**/*.md
 sample-vault/.obsidian/workspace.json
+
+!sample-vault/.obsidian/plugins/hot-reload-master/*
