@@ -104,9 +104,21 @@ function content(element: docs_v1.Schema$ParagraphElement): string | undefined {
 	if (textRun.textStyle.backgroundColor) {
 		return `> [!quote]+\n> ${text}`;
 	}
-	// hightlight date
-	else if (textRun.textStyle.fontSize?.magnitude === 11 && textRun.textStyle.baselineOffset === "NONE") {
-		return `> ***${text}***`;
+	else if (
+		textRun.textStyle.fontSize?.magnitude === 11 &&
+		textRun.textStyle.baselineOffset === "NONE"
+	) {
+		if (
+			Object.values(textRun.textStyle.foregroundColor.color.rgbColor)?.every(
+				(color) => color === 0.25882354
+			)
+		) {
+			// note text
+			return `> ***${text}***`;
+		} else {
+			// hightlight date
+			return `> _${text}_`;
+		}
 	}
 	// google play page and book url
 	else if (textRun?.textStyle?.link?.url) {
