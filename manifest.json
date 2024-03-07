@@ -2,7 +2,7 @@
 	"id": "google-book-highlight-sync",
 	"name": "Google Book Highlight Sync",
 	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
+	"minAppVersion": "1.5.8",
 	"description": "Sync google book highlight from you google drive to obsidian.",
 	"author": "Leangseu",
 	"authorUrl": "https://github.com/leangseu",

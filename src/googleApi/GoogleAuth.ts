@@ -6,7 +6,6 @@
 	and refresh the access token if needed 
 */
 import type { IncomingMessage, ServerResponse } from "http";
-import http from 'http';
 import { OAuth2Client } from "google-auth-library";
 
 import GoogleBookHighlighSync from "./../main";
@@ -138,6 +137,8 @@ export async function LoginGoogle(): Promise<void> {
 		window.open(authUrl);
 		return;
 	}
+
+	const http = require("http");
 
 	authSession.server = http
 		.createServer(async (req: IncomingMessage, res: ServerResponse) => {

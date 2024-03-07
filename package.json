@@ -1,7 +1,7 @@
 {
 	"name": "obsidian-google-book-highlight-sync",
 	"version": "1.0.0",
-	"description": "Sync google book highlight from you google drive to obsidian",
+	"description": "Sync Google Book Highlight from your Google Drive",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
@@ -27,7 +27,6 @@
 	"dependencies": {
 		"@googleapis/docs": "^3.0.0",
 		"@googleapis/drive": "8.7.0",
-		"@popperjs/core": "^2.11.8",
 		"google-auth-library": "^9.6.3"
 	}
 }

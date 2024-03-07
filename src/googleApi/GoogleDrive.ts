@@ -5,8 +5,7 @@ import { getRefreshToken } from "src/helper/LocalStorage";
 import GoogleBookHighlighSync from "src/main";
 import { processGDoc } from "src/helper/GDocProcessor";
 import { Notice } from "obsidian";
-import { join } from "path";
-import moment from "moment";
+import {moment} from "obsidian";
 
 export function getFolderIdFromUrl(url: string): string {
 	return new URL(url).pathname.split("/").pop();
@@ -100,10 +99,8 @@ export async function bookHighlighSync(): Promise<void> {
 			await app.vault.createFolder(plugin.settings.outputPath);
 		}
 
-		const filePath = join(
-			plugin.settings.outputPath,
-			variables.book_name.replace(/[:|;$%@"<>()+,]/g, "") + ".md"
-		);
+		const filePath = `${plugin.settings.outputPath}/${variables.book_name.replace(/[:|;$%@"<>()+,]/g, "") + ".md"}`;
+
 		new	Notice('Creating file ' + filePath);
 
 		let newFile = app.vault.getFileByPath(filePath);
