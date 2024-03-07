@@ -26,9 +26,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 		containerEl.empty();
 		const isLoggedIn = getRefreshToken();
 
-		containerEl.createEl("h3", {
-			text: "Settings for Google Book Highlight Sync",
-		});
+		new Setting(containerEl).setName('Google Authentication').setHeading();
 
 		new Setting(containerEl)
 			.setName("Client Id")
@@ -44,9 +42,10 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Client Secret")
+			.setName("Client secret")
 			.setDesc("Google client secret")
-			.addText((text) =>
+			.addText((text) => {
+				text.inputEl.type = 'password'
 				text
 					.setPlaceholder("Enter your client secret")
 					.setValue(this.plugin.settings.googleClientSecret)
@@ -54,10 +53,10 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 						this.plugin.settings.googleClientSecret = value.trim();
 						await this.plugin.saveSettings();
 					})
-			);
+			});
 
 		new Setting(containerEl)
-			.setName("Login with google")
+			.setName("Login with Google")
 			.addButton((button) => {
 				button
 					.setButtonText(isLoggedIn ? "Logout" : "Login")
@@ -80,7 +79,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 		if (isLoggedIn) {
 			new Setting(containerEl).addButton((button) => {
 				button
-					.setButtonText("Start Sync")
+					.setButtonText("Start sync")
 					.setClass("mod-cta")
 					.setDisabled(!isLoggedIn)
 					.onClick(async () => {
@@ -91,7 +90,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 			});
 		}
 
-		new Setting(containerEl).setName("Output Path").addSearch((search) => {
+		new Setting(containerEl).setName("Output path").addSearch((search) => {
 			new FolderSuggest(this.app, search.inputEl);
 			search
 				.setPlaceholder("Enter the folder")
@@ -103,7 +102,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 		});
 
 		new Setting(containerEl)
-			.setName("Output Format")
+			.setName("Output format")
 			// .setDesc("Output Format")
 			.addTextArea((text) =>
 				text
@@ -119,11 +118,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 					})
 			);
 
-		containerEl.createEl("hr");
-
-		containerEl.createEl("h3", {
-			text: "Generate Setting",
-		});
+		new Setting(containerEl).setName('Generated values').setHeading();
 
 		new Setting(containerEl)
 			.setName("Last updated")
@@ -139,7 +134,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Google Play Notes Folder URL")
+			.setName("Google Play Notes folder URL")
 			.addText((text) =>
 				text
 					.setPlaceholder(
@@ -153,7 +148,7 @@ export default class GBookSyncSettingTab extends PluginSettingTab {
 			)
 			.addButton((button) =>
 				button
-					.setButtonText("Get Folder Url")
+					.setButtonText("Get folder URL")
 					.setClass('mod-cta')
 					.onClick(async () => {
 						await generateBookFolderUrl();

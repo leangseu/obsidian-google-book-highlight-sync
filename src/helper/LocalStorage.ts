@@ -1,9 +1,8 @@
+const localStorageKey = 'google-book-highlight-sync';
+
 //===================
 //GETTER
 //===================
-import manifest from "manifest.json";
-
-const localStorageKey = manifest.id;
 
 /**
  * getRefreshToken from LocalStorage
