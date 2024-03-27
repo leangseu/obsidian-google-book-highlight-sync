@@ -1,19 +1,24 @@
 {
 	"name": "obsidian-google-book-highlight-sync",
-	"version": "1.0.3",
+	"version": "1.0.0",
 	"description": "Sync Google Book Highlight from your Google Drive",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json",
 		"lint": "eslint src/**/*.ts",
-		"lint:fix": "eslint src/**/*.ts --fix"
+		"lint:fix": "eslint src/**/*.ts --fix",
+		"release": "semantic-release"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^12.0.0",
+		"@semantic-release/exec": "^6.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/release-notes-generator": "^13.0.0",
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
 		"@typescript-eslint/parser": "5.29.0",
@@ -21,6 +26,7 @@
 		"esbuild": "0.17.3",
 		"eslint": "^8.57.0",
 		"obsidian": "latest",
+		"semantic-release": "^23.0.6",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"
 	},
