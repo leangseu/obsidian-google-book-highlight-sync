@@ -1,5 +1,3 @@
-// Credits go to Liam's Periodic Notes Plugin: https://github.com/liamcain/obsidian-periodic-notes
-
 import {
 	App,
 	TAbstractFile,
