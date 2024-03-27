@@ -65,11 +65,14 @@ export default class GoogleBookHighlighSync extends Plugin {
 		this.addRibbonIcon(
 			iconId,
 			"Book highlight sync",
-			async (evt: MouseEvent) => {
-				// Called when the user clicks the icon.
-				await bookHighlighSync();
-			}
+			bookHighlighSync,
 		);
+
+		this.addCommand({
+            id: "google-book-sync",
+            name: "Sync",
+            callback: bookHighlighSync,
+        });
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.settingsTab = new GBookSyncSettingTab(this.app, this);

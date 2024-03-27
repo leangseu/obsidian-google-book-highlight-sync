@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-google-book-highlight-sync",
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"description": "Sync Google Book Highlight from your Google Drive",
 	"main": "main.js",
 	"scripts": {
