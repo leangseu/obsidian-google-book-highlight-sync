@@ -2,6 +2,7 @@
 
 module.exports = {
   branches: ['lk/wf-test'], // Adjust this based on your branch setup
+  tagFormat: '${version}',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
