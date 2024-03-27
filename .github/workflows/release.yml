@@ -3,7 +3,7 @@ name: Release Obsidian plugin
 on:
   push:
     branches:
-      - lk/wf-test
+      - master
 
 jobs:
   build:

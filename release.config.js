@@ -1,7 +1,5 @@
-// release.config.js
-
 module.exports = {
-  branches: ['lk/wf-test'], // Adjust this based on your branch setup
+  branches: ['master'], // Adjust this based on your branch setup
   tagFormat: '${version}',
   plugins: [
     '@semantic-release/commit-analyzer',
