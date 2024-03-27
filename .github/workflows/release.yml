@@ -1,12 +1,12 @@
 name: Release Obsidian plugin
 
 on:
-  push:
-    tags:
-      - "*"
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,11 @@ jobs:
         run: |
           yarn
           yarn build
+
+	  - name: Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
 
       - name: Create release
         env:

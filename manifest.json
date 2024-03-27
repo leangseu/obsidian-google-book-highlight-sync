@@ -1,10 +1,10 @@
 {
 	"id": "google-book-highlight-sync",
 	"name": "Google Book Highlight Sync",
-	"version": "1.0.3",
 	"minAppVersion": "1.5.8",
 	"description": "Sync Google book's highlight from you google drive",
 	"author": "Leangseu",
 	"authorUrl": "https://github.com/leangseu",
-	"isDesktopOnly": true
+	"isDesktopOnly": true,
+	"version": "1.0.4"
 }
