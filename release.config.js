@@ -11,5 +11,14 @@ module.exports = {
         prepareCmd: 'node version-bump.mjs ${nextRelease.version}', // Custom script to run before release
       },
     ],
+	[
+		"@semantic-release/github",
+		{
+		  "assets": [
+			{ "path": "main.js", "label": "main.js" },
+			{ "path": "manifest.json", "label": "manifest.json" }
+		  ]
+		}
+	  ]
   ],
 };
